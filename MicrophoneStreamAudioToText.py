@@ -1,4 +1,5 @@
 import asyncio
+# NOTE: MUST RUN 'aws configure' before running script
 # This example uses the sounddevice library to get an audio stream from the
 # microphone. It's not a dependency of the project but can be installed with
 # `python -m pip install amazon-transcribe aiofile`
