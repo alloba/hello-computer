@@ -23,8 +23,8 @@ class MyEventHandler(TranscriptResultStreamHandler):
         # Here's an example to get started.
         results = transcript_event.transcript.results
         for result in results:
-            for alt in result.alternatives:
-                print(alt.transcript)
+            if not result.is_partial:
+                print(result.alternatives.pop().transcript)
 
 
 async def mic_stream():
@@ -70,7 +70,8 @@ async def basic_transcribe():
     stream = await client.start_stream_transcription(
         language_code="en-US",
         media_sample_rate_hz=16000,
-        media_encoding="pcm"
+        media_encoding="pcm",
+        enable_partial_results_stabilization=False
     )
 
     # Instantiate our handler and start processing events
